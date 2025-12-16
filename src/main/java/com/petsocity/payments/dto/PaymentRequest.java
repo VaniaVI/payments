@@ -4,7 +4,10 @@ import lombok.Data;
 
 @Data
 public class PaymentRequest {
-    private String orderCode;
+    private String commerceOrder;
     private Integer amount;
+    private String subject;
     private String email;
+    private String urlConfirmation;
+    private String urlReturn;
 }
