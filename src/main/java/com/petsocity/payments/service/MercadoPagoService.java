@@ -47,10 +47,11 @@ public class MercadoPagoService {
 
         // Back URLs
         PreferenceBackUrlsRequest backUrls = PreferenceBackUrlsRequest.builder()
-                .success(request.getUrlReturn())
-                .failure(request.getUrlReturn())
-                .pending(request.getUrlReturn())
-                .build();
+        .success(request.getUrlReturn() + "/success")   // URL de tu frontend o deep link móvil
+        .pending(request.getUrlReturn() + "/pending")
+        .failure(request.getUrlReturn() + "/failure")
+        .build();
+
 
         // Crear PreferenceRequest
         PreferenceRequest preferenceRequest = PreferenceRequest.builder()
@@ -58,6 +59,8 @@ public class MercadoPagoService {
                 .payer(payer)
                 .backUrls(backUrls)
                 .build();
+
+        
 
         // Crear preferencia
         Preference preference = client.create(preferenceRequest);
