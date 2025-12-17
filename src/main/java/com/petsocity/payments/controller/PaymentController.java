@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.petsocity.payments.dto.PaymentRequest;
 import com.petsocity.payments.dto.PaymentResponse;
-import com.petsocity.payments.services.FlowService;
+import com.petsocity.payments.service.FlowService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,11 +22,8 @@ public class PaymentController {
 
     // Crear pago (lo llama la API de ÓRDENES)
   @PostMapping
-    public ResponseEntity<PaymentResponse> createPayment(
-            @RequestBody PaymentRequest request
-    ) {
-        String paymentUrl = flowService.createPayment(request);
-        return ResponseEntity.ok(new PaymentResponse(paymentUrl));
+    public ResponseEntity<?> createPayment(@RequestBody PaymentRequest request) {
+        return ResponseEntity.ok(flowService.createPayment(request));
     }
 
     @PostMapping("/webhook")
