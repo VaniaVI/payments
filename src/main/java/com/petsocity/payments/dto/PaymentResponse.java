@@ -7,5 +7,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class PaymentResponse {
     private String preferenceId;
-    private String initPoint; // URL de checkout
+    private String paymentUrl; // URL de checkout
 }
