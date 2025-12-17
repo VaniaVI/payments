@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class MercadoPagoService {
@@ -66,5 +67,15 @@ public class MercadoPagoService {
         Preference preference = client.create(preferenceRequest);
 
         return new PaymentResponse(preference.getId().toString(), preference.getInitPoint());
+    }
+        public void processWebhook(String dataId, Map<String, Object> webhookData) {
+        // Obtener información del pago desde el webhook
+        Map<String, Object> data = (Map<String, Object>) webhookData.get("data");
+        Map<String, Object> paymentInfo = data != null ? data : Map.of();
+
+        // Determinar estado real según info de Mercado Pago
+        String status = (String) paymentInfo.getOrDefault("status", "pending"); // ejemplo, ajustar según webhook real
+
+        System.out.println("Orden " + dataId + " actualizada con estado: " + status);
     }
 }
