@@ -22,7 +22,7 @@ public class FlowService {
     @Value("${flow.api.key}")
     private String apiKey;
 
-    @Value("${flow.api.secret}")
+    @Value("${flow.secret.key}")
     private String secretKey;
 
     private final RestTemplate restTemplate = new RestTemplate();
