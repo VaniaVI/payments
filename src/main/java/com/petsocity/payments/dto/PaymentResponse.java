@@ -6,10 +6,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class PaymentResponse {
-        private String url;
-    private String token;
-
-    public String getPaymentUrl() {
-        return url + "?token=" + token;
-    }
+    private String preferenceId;
+    private String initPoint; // URL de checkout
 }
