@@ -73,7 +73,7 @@ public class FlowService {
 
             ResponseEntity<Map> response =
                     restTemplate.postForEntity(
-                            flowUrl + "payment/create",
+                            flowUrl + "/payment/create",
                             request,
                             Map.class
                     );
