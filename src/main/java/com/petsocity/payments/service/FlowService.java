@@ -19,11 +19,14 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class FlowService {
 
-    @Value("${flow.api.key}")
-    private String apiKey;
+        @Value("${flow.api.key}")
+        private String apiKey;
 
-    @Value("${flow.secret.key}")
-    private String secretKey;
+        @Value("${flow.secret.key}")
+        private String secretKey;
+
+        @Value("${flow.api.url}")
+        private String flowUrl;
 
     private final RestTemplate restTemplate = new RestTemplate();
 
@@ -38,6 +41,10 @@ public class FlowService {
         
             throw new IllegalArgumentException("PaymentRequest incompleto: " + req);
         }
+
+        System.out.println("API KEY: " + apiKey);
+        System.out.println("SECRET KEY: " + secretKey);
+        System.out.println("FLOW URL: " + flowUrl);
 
 
         try {
@@ -66,7 +73,7 @@ public class FlowService {
 
             ResponseEntity<Map> response =
                     restTemplate.postForEntity(
-                            "https://sandbox.flow.cl/api/payment/create",
+                            flowUrl + "payment/create",
                             request,
                             Map.class
                     );
